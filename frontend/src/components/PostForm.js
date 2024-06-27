@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './PostForm.css';
 
+const API_URL = "https://emotion-401c3omhh-itokantas-projects.vercel.app";
+
 const PostForm = ({ onClose }) => {
   const [content, setContent] = useState('');
   const [emotion, setEmotion] = useState('Happy');
@@ -22,7 +24,7 @@ const PostForm = ({ onClose }) => {
       setError(`投稿は${maxLines}行以内で入力してください。`);
     } else {
       setError('');
-      axios.post('http://localhost:5000/posts', { content, emotion })
+      axios.post(`${API_URL}/posts`, { content, emotion }) // ここを変更しました
         .then(response => {
           setContent('');
           setEmotion('Happy');
