@@ -1,0 +1,37 @@
+.emotion-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.emotion-nav a, .emotion-nav button {
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 120px; /* 横幅を統一し、少し横長にする */
+  text-align: center; /* ボタン内のテキストを中央揃え */
+}
+
+.emotion-nav a:hover, .emotion-nav button:hover {
+  background-color: #0056b3;
+}
+
+.post {
+  background-color: #444;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.post-date {
+  display: block;
+  font-size: 12px;
+  color: #bbb;
+  text-align: right;
+}
