@@ -3,8 +3,8 @@
   publish = "frontend/build"
   command = "npm install && npm run build"
 
-[build.environment]
-  NODE_VERSION = "16.x"
+[context.production.environment]
+  NODE_VERSION = "16.0.0"
 
 [[redirects]]
   from = "/*"
