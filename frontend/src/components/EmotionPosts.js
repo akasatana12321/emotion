@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './EmotionPosts.css';
 
-const API_URL = "https://emotion-401c3omhh-itokantas-projects.vercel.app";
+const API_URL = "https://my-backend-project-psi.vercel.app/";
 
 const EmotionPosts = ({ emotion }) => {
   const [posts, setPosts] = useState([]);

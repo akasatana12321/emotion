@@ -1,2 +1,6 @@
-const API_URL = 'emotion-sea.vercel.app';
-export default API_URL;
+const config = {
+  apiUrl: process.env.REACT_APP_API_URL
+};
+
+export default config;
+
