@@ -2,12 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-const cors = require('cors'); // CORSミドルウェアをインポート
+const cors = require('cors');
 
 const app = express();
 
-// CORSミドルウェアを使用
-app.use(cors());
+// CORS設定の追加
+const corsOptions = {
+  origin: 'https://enchanting-sunshine-c8f852.netlify.app',
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/emotionPosts', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -17,22 +22,22 @@ const PostSchema = new mongoose.Schema({
   emotion: String,
   createdAt: { type: Date, default: Date.now },
   goodCount: { type: Number, default: 0 },
-  userId: String // 仮のユーザーIDを追加
+  userId: String
 });
 
 const Post = mongoose.model('Post', PostSchema);
 
 app.post('/posts', async (req, res) => {
-  const userId = req.body.userId || 'defaultUser'; // 仮のユーザーIDを使用
+  const userId = req.body.userId || 'defaultUser';
   const lastPost = await Post.findOne({ userId }).sort({ createdAt: -1 });
   const now = new Date();
 
-  if (lastPost && (now - lastPost.createdAt) < 60000) { // 1分以内の投稿を制限
+  if (lastPost && (now - lastPost.createdAt) < 60000) {
     return res.status(429).send({ error: '連続投稿は1分間隔を空けてください。' });
   }
 
   const newPost = new Post(req.body);
-  newPost.userId = userId; // ユーザーIDを設定
+  newPost.userId = userId;
   await newPost.save();
   res.send(newPost);
 });
@@ -53,7 +58,6 @@ app.post('/posts/:id/good', async (req, res) => {
   }
 });
 
-// 静的ファイルの提供
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
 
 app.get('*', (req, res) => {
@@ -63,3 +67,4 @@ app.get('*', (req, res) => {
 app.listen(process.env.PORT || 5000, () => {
   console.log('Server is running on port', process.env.PORT || 5000);
 });
+

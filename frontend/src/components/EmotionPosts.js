@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './EmotionPosts.css';
+import config from './config'; // config.jsからAPI_URLをインポート
 
-const API_URL = "https://my-backend-project-psi.vercel.app/";
+const API_URL = config.API_URL;
+
 
 const EmotionPosts = ({ emotion }) => {
   const [posts, setPosts] = useState([]);

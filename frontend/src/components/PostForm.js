@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './PostForm.css';
-import API_URL from './config'; // config.jsからAPI_URLをインポート
+import Api_URL from './config'; // config.jsからAPI_URLをインポート
+
+
 
 const PostForm = ({ onClose }) => {
   const [content, setContent] = useState('');
@@ -23,7 +25,7 @@ const PostForm = ({ onClose }) => {
       setError(`投稿は${maxLines}行以内で入力してください。`);
     } else {
       setError('');
-      axios.post(`${API_URL}/posts`, { content, emotion })
+      axios.post(`${config.API_URL}/posts`, { content, emotion })
         .then(response => {
           setContent('');
           setEmotion('Happy');
