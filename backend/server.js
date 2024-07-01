@@ -8,13 +8,15 @@ const app = express();
 
 // CORS設定の追加
 const corsOptions = {
-  origin: 'https://frontend-naqr7rbw6-itokantas-projects.vercel.app/',
+  origin: 'https://frontend-ipnzlO5io-itokantas-projects.vercel.app', // 必要に応じてドメインを変更
   optionsSuccessStatus: 200,
   credentials: true,
 };
 app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
+// Mongoose接続
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/emotionPosts', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -61,6 +63,7 @@ app.post('/posts/:id/good', async (req, res) => {
   }
 });
 
+// フロントエンドのビルドされたファイルを提供
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'));
@@ -69,3 +72,4 @@ app.get('*', (req, res) => {
 app.listen(process.env.PORT || 5000, () => {
   console.log('Server is running on port', process.env.PORT || 5000);
 });
+
