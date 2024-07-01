@@ -8,7 +8,7 @@ const app = express();
 
 // CORS設定の追加
 const corsOptions = {
-  origin: 'https://frontend-psi-lilac-47.vercel.app',
+  origin: 'https://frontend-naqr7rbw6-itokantas-projects.vercel.app/',
   optionsSuccessStatus: 200,
   credentials: true,
 };
