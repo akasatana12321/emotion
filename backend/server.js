@@ -10,15 +10,14 @@ const app = express();
 const corsOptions = {
   origin: 'https://frontend-psi-lilac-47.vercel.app',
   optionsSuccessStatus: 200,
-  credentials: true
+  credentials: true,
 };
-
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/emotionPosts', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 const PostSchema = new mongoose.Schema({
@@ -26,7 +25,7 @@ const PostSchema = new mongoose.Schema({
   emotion: String,
   createdAt: { type: Date, default: Date.now },
   goodCount: { type: Number, default: 0 },
-  userId: String
+  userId: String,
 });
 
 const Post = mongoose.model('Post', PostSchema);
@@ -70,4 +69,3 @@ app.get('*', (req, res) => {
 app.listen(process.env.PORT || 5000, () => {
   console.log('Server is running on port', process.env.PORT || 5000);
 });
-
