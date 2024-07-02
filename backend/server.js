@@ -7,11 +7,20 @@ const cors = require('cors');
 const app = express();
 
 // CORS設定の追加
+
 const corsOptions = {
-  origin: 'https://frontend-ipnzl05io-itokantas-projects.vercel.app', // フロントエンドのURL
+  origin: [
+    'https://frontend-ipnz1o51o-itokantas-projects.vercel.app',
+    'https://frontend-kanitayiteng168-gmailcom-itokantas-projects.vercel.app'
+    'https://frontend-sea.vercel.app'
+    'https://frontend-itokantas-projects.vercel.app'
+ ],
   optionsSuccessStatus: 200,
   credentials: true,
 };
+
+
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
